@@ -1,5 +1,5 @@
 
-[Demo docker with CI/CD](https://github.com/aliouba/ci-jenkins-demo)
+
 
 # Redis Master
 
