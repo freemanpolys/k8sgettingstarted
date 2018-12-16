@@ -1,14 +1,11 @@
-# dakar-innovation-day
-
-[Demo docker](https://github.com/aliouba/flask-docker)
 
 [Demo docker with CI/CD](https://github.com/aliouba/ci-jenkins-demo)
 
 # Redis Master
 
-git clone https://github.com/aliouba/dakar-innovation-day.git
+git clone https://github.com/aliouba/k8sgettingstarted.git
 
-cd guestbook/
+cd k8sgettingstarted/guestbook/
 
 kubectl create -f redis-master-deployment.yaml
 
@@ -26,26 +23,4 @@ kubectl create -f frontend-deployment.yaml
 
 kubectl create -f frontend-service.yaml
 
-(Optional) kubectl scale deploy frontend --replicas 4
-
-# Create Mysql database
-
-cd ../dakar-innovation-day
-
-kubectl create -f wordpress-demo/mysql/
-
-# Create Wordpress instance
-
-kubectl create -f wordpress-demo/wordpress/
-
-# Create Ingress resource
-
-kubectl delete -f wordpress-demo/wordpress/
-
-kubectl delete -f wordpress-demo/mysql/
-
-kubectl create -f wordpress-demo/mysql/
-
-kubectl create -f wordpress-demo/wordpress-ing/
-
-
+(Optional) kubectl scale deploy frontend --replicas 2
