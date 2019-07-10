@@ -1,0 +1,58 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: f5-nginx
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: f5-nginx
+    spec:
+      containers:
+      - name: f5-nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: f5-nginx
+  labels:
+    run: f5-nginx
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    run: f5-nginx
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: f5-nginx
+  labels:
+    f5type: virtual-server
+data:
+  schema: "f5schemadb://bigip-virtual-server_v0.1.7.json"
+  data: |
+    {
+      "virtualServer": {
+        "backend": {
+          "servicePort": 80,
+          "serviceName": "f5-nginx"
+        },
+        "frontend": {
+          "virtualAddress": {
+            "port": 8080,
+            "bindAddr": "10.128.0.6"
+          },
+          "partition": "kubernetes",
+          "balance": "least-connections-member",
+          "mode": "http"
+        }
+      }
+    }
