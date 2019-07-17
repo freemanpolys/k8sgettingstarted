@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web-secure-pod
+  labels:
+    app: web-secure
+spec:
+  containers:
+  - name: web-secure
+    image: nginx
+    ports:
+    - containerPort: 80
