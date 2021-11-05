@@ -15,4 +15,5 @@ spec:
       configMap:
         # Provide the name of the ConfigMap 
         name: game-demo
-  restartPolicy: Never
+
+
