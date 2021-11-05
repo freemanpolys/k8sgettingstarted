@@ -6,13 +6,15 @@ spec:
   containers:
     - name: test-container
       image: k8s.gcr.io/busybox
-      command: [ "/bin/sh", "-c", "ls /etc/config/" ]
-      volumeMounts:
-      - name: config-volume
-        mountPath: /etc/config
-  volumes:
-    - name: config-volume
-      configMap:
-        # Provide the name of the ConfigMap 
-        name: game-demo
-  restartPolicy: Never
+      command: [ "/bin/sh", "-c", "env" ]
+      env:
+        # Define the environment variable
+        - name: SPECIAL_LEVEL_KEY
+          valueFrom:
+            configMapKeyRef:
+              # The ConfigMap containing the value
+              name: game-demo
+              # Specify the key associated with the value
+              key: player_initial_lives
+
+
