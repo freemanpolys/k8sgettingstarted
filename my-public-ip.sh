@@ -1,2 +1,3 @@
 #!/bin/sh
 curl ifconfig.me
+echo " "
