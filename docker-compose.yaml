@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+  port-tutorial:
+    image: aliouba/port-tutorial-with-curl
+    ports:
+      - "30001:3000"
+    entrypoint: /usr/bin/nodejs /home/hello-world/app.js
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 1m15s
+      timeout: 10s
+      retries: 2
+  port-tutorial2:
+    image: aliouba/port-tutorial-with-curl
+    ports:
+      - "30002:3000"
+    entrypoint: /usr/bin/nodejs /home/hello-world/app.js
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 1m15s
+      timeout: 10s
+      retries: 2
+  port-tutorial3:
+    image: aliouba/port-tutorial-with-curl
+    ports:
+      - "30003:3000"
+    entrypoint: /usr/bin/nodejs /home/hello-world/app.js
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 1m15s
+      timeout: 10s
+      retries: 2
